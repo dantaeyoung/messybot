@@ -6,7 +6,6 @@ var config = require('./config');
 var isytool = require('./isytool');
 
 
-// create isytool
 var isy = new isytool({
   protocol: config.isy.protocol,
   addr: config.isy.addr,
@@ -16,15 +15,15 @@ var isy = new isytool({
 })
 
 // CONNECT SLACK
-var slackcontroller = Botkit.slackbot({ debug: true });
-var bot = slackcontroller.spawn({
+var controller = Botkit.slackbot({ debug: true });
+var bot = controller.spawn({
     token: config.slack.api_token
 }).startRTM();
 
-// create webserver
-var webserver = require('./webserver.js')(slackcontroller, isy);
 
-slackcontroller.hears(['zwavestatus'],['ambient'],function(bot,message) {
+var webserver = require('./server.js')(controller);
+
+controller.hears(['zwavestatus'],['ambient'],function(bot,message) {
   console.log("who");
   isy.request("/rest/sys", function(err, json) {
     if(!err) {
@@ -33,7 +32,7 @@ slackcontroller.hears(['zwavestatus'],['ambient'],function(bot,message) {
   });
 });
 
-slackcontroller.hears(['zwavecmd (.*)'],['ambient'],function(bot,message) {
+controller.hears(['zwavecmd (.*)'],['ambient'],function(bot,message) {
   var path = message.match[1];
   bot.reply(message, "will execute cmd:" + path);
   isy.request(path, function(err, json) {
@@ -44,7 +43,7 @@ slackcontroller.hears(['zwavecmd (.*)'],['ambient'],function(bot,message) {
   });
 });
 
-slackcontroller.hears(['zwave (.*) (.*)'],['ambient'],function(bot,message) {
+controller.hears(['zwave (.*) (.*)'],['ambient'],function(bot,message) {
   var path = "/rest/nodes/" + message.match[1] + "/CMD/";
   if(message.match[2] == "on") { path += "DON"; }
   if(message.match[2] == "off") { path += "DOF"; }
@@ -56,7 +55,7 @@ slackcontroller.hears(['zwave (.*) (.*)'],['ambient'],function(bot,message) {
   });
 });
 
-slackcontroller.hears(['hello', 'hi'],['direct_message','direct_mention','mention'],function(bot,message) {
+controller.hears(['hello', 'hi'],['direct_message','direct_mention','mention'],function(bot,message) {
   bot.reply(message,'Hello yourself.');
 });
 
