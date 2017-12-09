@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="qrcode.min.js"></script>
+<script>
+var getUrlValue = function(VarSearch){
+    var SearchString = window.location.search.substring(1);
+    var VariableArray = SearchString.split('&');
+    for(var i = 0; i < VariableArray.length; i++){
+        var KeyValuePair = VariableArray[i].split('=');
+        if(KeyValuePair[0] === VarSearch){
+            return KeyValuePair[1];
+        }
+    }
+}
+
+
+function initQRs() {
+  $('.editable').attr('contenteditable','true');
+  $('.editable').attr('spellcheck','false');
+
+  $(".qrcode .code").each(function(i, elem) {
+    if( $(elem).html().length <= 0) {
+      new QRCode(elem, "URL");
+    }
+  });
+
+  $('.qrcode .url').on('propertychange input', function (e) {
+    var thiscode = $(this).siblings(".code")[0];
+    var thisurl = e.target.innerHTML;
+    $(this).siblings(".code").html("");
+    new QRCode(thiscode, thisurl);
+  });
+}
+
+$(function() {
+
+
+
+    initQRs();
+
+
+  $("#addqrcode").click(function() {
+    $('<div class="qrcode"><div class="editable title">TITLE</div><div class="code"></div><div class="editable url">URL</div></div>').appendTo("#qrcodes");
+    initQRs();
+  });
+
+
+});
+
+
+
+</script>
+
+
+<style type="text/css">
+body {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+      font-family: 'Source Sans Pro', Helvetica, Arial;
+}
+.flexcontainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.centerdiv {
+}
+
+#qrcodes {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.qrcode {
+  margin: 20px 40px;
+  width: 200px;
+}
+
+.qrcode .title {
+  font-weight: bold;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.qrcode .url {
+  text-align: center;
+}
+.qrcode .code {
+margin-top: 10px;
+margin-bottom: 10px;
+}
+
+.qrcode .code * {
+width: 100%;
+}
+
+
+@media print
+{    
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+}
+
+</style>
+
+<!-- 
+///////////////
+CUSTOMIZE BELOW
+///////////////
+ -->
+
+<title>TITLE</title>
+
+</head>
+<body>
+<div id="ui">
+  <button class="no-print" id="addqrcode">Add QR Code</button>
+</div>
+<div class="flexcontainer">
+    <div class="centerdiv">
+      <div id="qrcodes">
+        <div class="qrcode">
+          <div class="editable title">TITLE</div>
+          <div class="code"></div>
+          <div class="editable url">URL</div>
+        </div>
+      </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+

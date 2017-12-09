@@ -13,7 +13,7 @@ module.exports = function(config, abilities) {
     webserver.use(bodyParser.json());
     webserver.use(bodyParser.urlencoded({ extended: true }));
     // Setup a static directory 'public', totally optional
-    webserver.use(express.static('public'));
+    webserver.use(express.static('app/public'));
 
     // You can pass in whatever hostname you want as the second argument
     // of the express listen function, it defaults to 0.0.0.0 aka localhost 
