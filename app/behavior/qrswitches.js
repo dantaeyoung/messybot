@@ -20,6 +20,6 @@ function qrswitch_v1(params, config, abilities) {
        //});
      }
    });
-   return "v1" + nodeid + cmd;
+   return "<h1>Success!</h1><br>v1" + nodeid + cmd;
 }
 

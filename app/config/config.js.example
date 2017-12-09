@@ -12,6 +12,9 @@ config.isy.port = "80"
 config.isy.user = "username"
 config.isy.pass = "password"
 
+config.dmx = {};
+config.dmx.addr = "123.123.123.123"
+
 config.webserver = {};
 config.webserver.port = 3000;
 

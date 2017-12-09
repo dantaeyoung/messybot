@@ -2,15 +2,19 @@ var config = require('./config/config');
 
 var abilities = {};
 
-// START ISY TOOL
+console.log("= CONNECT TO ISY");
 abilities.isy = new (require('./abilities/isy'))(config);
 
-// START SLACK
+console.log("= CONNECT TO SLACK");
 abilities.slack = new (require('./abilities/slack'))(config);
 
-// START WEBSERVER
+//console.log("= CONNECT TO DMX");
+//abilities.dmx = new (require('./abilities/dmx'))(config);
+
+console.log("= START WEBSERVER");
 abilities.webserver = require('./abilities/webserver.js')(config, abilities);
 
+console.log("= ADD BEHAVIORS");
 
 // Add behaviors
 (require('./behavior/banter'))(abilities);
@@ -20,3 +24,5 @@ abilities.webserver = require('./abilities/webserver.js')(config, abilities);
 (require('./behavior/webroutes'))(config, abilities);
 
 (require('./behavior/qrswitches'))(config, abilities);
+
+console.log("= RUNNING!");
