@@ -5,7 +5,7 @@
   "main": "messybot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/messybot.js"
+    "start": "node app/messybot.js"
   },
   "repository": {
     "type": "git",
