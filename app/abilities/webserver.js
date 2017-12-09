@@ -20,16 +20,7 @@ module.exports = function(config, abilities) {
     webserver.listen(config.webserver.port,  null, function() {
         console.log('Express webserver configured and listening!')
     });
- 
-
-    // Register our Facebook webhook routes
-    // Pass in the express server, and the botkit slackcontroller into
-    // the routes file to extend both of them 
-    //require('./incoming-webhook')(webserver, slackcontroller)
-    
-    //slackcontroller.webserver = webserver;
 
     return webserver;
-
 }
 
