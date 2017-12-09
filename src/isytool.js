@@ -1,3 +1,5 @@
+var request = require('request');
+var xml2js = require("xml2js");
 
 function isytool(config) {
   this.protocol = config.protocol;

@@ -1,11 +1,8 @@
-var Botkit = require('botkit');
-var $ = require('jquery')
-var request = require('request');
-var xml2js = require("xml2js");
 var config = require('./config');
+
+// START ISY TOOL
+
 var isytool = require('./isytool');
-
-
 var isy = new isytool({
   protocol: config.isy.protocol,
   addr: config.isy.addr,
@@ -15,13 +12,14 @@ var isy = new isytool({
 })
 
 // CONNECT SLACK
+var Botkit = require('botkit');
 var controller = Botkit.slackbot({ debug: true });
 var bot = controller.spawn({
     token: config.slack.api_token
 }).startRTM();
 
-
-var webserver = require('./server.js')(controller);
+// START WEBSERVER
+var webserver = require('./webserver.js')(controller);
 
 controller.hears(['zwavestatus'],['ambient'],function(bot,message) {
   console.log("who");
