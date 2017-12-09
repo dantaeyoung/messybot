@@ -17,4 +17,6 @@ abilities.webserver = require('./abilities/webserver.js')(config, abilities);
 
 (require('./behavior/zwave'))(abilities);
 
-(require('./behavior/webroutes'))(abilities);
+(require('./behavior/webroutes'))(config, abilities);
+
+(require('./behavior/qrswitches'))(config, abilities);

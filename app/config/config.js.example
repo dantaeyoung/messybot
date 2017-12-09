@@ -2,6 +2,8 @@ var config = {};
 
 config.slack = {};
 config.slack.api_token = "xoxb-12345678-1234";
+config.slack.channel_err = 'messybot_err'
+config.slack.channel_main = 'messybot'
 
 config.isy = {};
 config.isy.protocol = "http"
