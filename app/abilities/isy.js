@@ -1,13 +1,13 @@
 var request = require('request');
 var xml2js = require("xml2js");
 
-class isytool {
+class isy {
   constructor(config) {
-    this.protocol = config.protocol;
-    this.addr = config.addr;
-    this.port = config.port;
-    this.user = config.user;
-    this.pass = config.pass;
+    this.protocol = config.isy.protocol;
+    this.addr = config.isy.addr;
+    this.port = config.isy.port;
+    this.user = config.isy.user;
+    this.pass = config.isy.pass;
   }
 
   request(path, callback) {
@@ -28,4 +28,4 @@ class isytool {
 
 }
 
-module.exports = isytool;
+module.exports = isy;

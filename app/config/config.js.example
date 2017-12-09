@@ -6,11 +6,12 @@ config.slack.api_token = "xoxb-12345678-1234";
 config.isy = {};
 config.isy.protocol = "http"
 config.isy.addr = "123.123.123.123"
-config.isy.port = "808080"
+config.isy.port = "80"
 config.isy.user = "username"
 config.isy.pass = "password"
 
-
+config.webserver = {};
+config.webserver.port = 3000;
 
 module.exports = config;
 
