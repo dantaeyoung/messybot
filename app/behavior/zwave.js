@@ -1,4 +1,4 @@
-module.exports = function(abilities) { 
+module.exports = function(config, abilities) { 
 
   var controller = abilities.slack.controller;
 

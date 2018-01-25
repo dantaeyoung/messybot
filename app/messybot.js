@@ -17,9 +17,9 @@ abilities.webserver = require('./abilities/webserver.js')(config, abilities);
 console.log("= ADD BEHAVIORS");
 
 // Add behaviors
-(require('./behavior/banter'))(abilities);
+(require('./behavior/banter'))(config, abilities);
 
-(require('./behavior/zwave'))(abilities);
+(require('./behavior/zwave'))(config, abilities);
 
 (require('./behavior/webroutes'))(config, abilities);
 
