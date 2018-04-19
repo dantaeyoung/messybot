@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/provolot/messybot#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "botkit": "^0.6.7",
     "dmx": "0.0.5",
     "isy-js": "^0.4.5",

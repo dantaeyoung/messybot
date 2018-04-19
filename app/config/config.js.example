@@ -12,6 +12,10 @@ config.isy.port = "80"
 config.isy.user = "username"
 config.isy.pass = "password"
 
+config.nestcam = {};
+config.nestcam.accesstoken = "tokentokentoken";
+config.nestcam.device_id = "deviceiddeviceid";
+
 config.dmx = {};
 config.dmx.addr = "123.123.123.123"
 
