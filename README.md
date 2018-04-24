@@ -4,7 +4,7 @@ Messybot is the opinionated interface for a building.
 
 ### Requirements:
 
-- A Raspberry Pi [setup instructions](https://github.com/dantaeyoung/messybot/blob/master/pi_setup.md)
+- A Raspberry Pi [(setup instructions)](https://github.com/dantaeyoung/messybot/blob/master/pi_setup.md)
 - a Space
 
 ### Optional Requirements
