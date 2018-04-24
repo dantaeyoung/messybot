@@ -7,13 +7,13 @@ module.exports = function(config, abilities) {
       cmd.get('vcgencmd display_power 0', function(err, data, stderr) {
         //console.log('the current working dir is : ',data)
       });
-  });
+  };
   function monitorOn() {
       bot.reply(message,'Okay! Turning monitor on!');
       cmd.get('vcgencmd display_power 1', function(err, data, stderr) {
         //console.log('the current working dir is : ',data)
       });
-  });
+  };
 
   controller.hears('turn monitor (.*)',['direct_message', 'direct_mention', 'mention'], function(bot, message) {
     if(message.match[1] == "off") {
