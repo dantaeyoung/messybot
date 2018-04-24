@@ -12,13 +12,17 @@ abilities.isy = new (require('./abilities/isy'))(config);
 console.log("= connect to SLACK");
 abilities.slack = new (require('./abilities/slack'))(config);
 
-//console.log("= connect to DMX");
-//abilities.dmx = new (require('./abilities/dmx'))(config);
+console.log("= connect to DMX");
+abilities.dmx = new (require('./abilities/dmx'))(config);
 
 console.log("= start webserver");
 abilities.webserver = require('./abilities/webserver.js')(config, abilities);
 
+console.log("= connect to ARPSCAN");
+abilities.arpscan = new (require('../abilities/arpscan'))(config);
 
+console.log("= connect to NESTCAM");
+abilities.nestcam = new (require('../abilities/nestcam'))(config);
 
 
 console.log("=== ADDING BEHAVIORS");

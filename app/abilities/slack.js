@@ -14,7 +14,11 @@ class slack {
 
 		var self = this;
 		this.controller.on('rtm_close', function(bot, err) {
-				self.start_rtm();
+			if (err) {
+					console.log('Failed to start RTM')
+					return setTimeout(self.start_rtm, 60000);
+			}
+      self.start_rtm();
 		});
 
     this.start_rtm();
