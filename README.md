@@ -4,10 +4,16 @@ Messybot is the opinionated interface for a building.
 
 ### Requirements:
 
+- A Raspberry Pi
 - a Space
+
+### Optional Requirements
+
 - a Slack group
 - Isy994 Z-wave controller and devices
-- A Raspberry Pi
+- An Art-Net DMX controller
+- An HDMI monitor attached
+
 
 ### Installation:
 
