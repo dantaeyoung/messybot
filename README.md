@@ -38,8 +38,8 @@ Messybot is the opinionated interface for a building.
 
 
 
-
-## Pi setup
+-----
+# Pi setup
 
 #### Change password
 `passwd`
