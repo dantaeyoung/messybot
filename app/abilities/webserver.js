@@ -6,7 +6,6 @@ var bodyParser = require('body-parser');
 module.exports = function(config, abilities) {
 
     var slackcontroller = config.slack.controller;
-    var isy = abilities.isy;
 
     var webserver = express();
     // Parse request bodies
