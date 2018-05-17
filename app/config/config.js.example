@@ -25,6 +25,7 @@ config.webserver.port = 3000;
 config.ambientweather = {};
 config.ambientweather.appkey = "appkeyappkeyappkey";
 config.ambientweather.apikey = "apikeyapikeyapikey";
+config.ambientweather.mac = "00:00:00:00:00:00";
 
 module.exports = config;
 
