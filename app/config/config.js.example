@@ -22,5 +22,9 @@ config.dmx.addr = "123.123.123.123"
 config.webserver = {};
 config.webserver.port = 3000;
 
+config.ambientweather = {};
+config.ambientweather.appkey = "appkeyappkeyappkey";
+config.ambientweather.apikey = "apikeyapikeyapikey";
+
 module.exports = config;
 
