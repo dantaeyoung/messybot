@@ -3,7 +3,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 
-module.exports = function(config, abilities) {
+module.exports = function(config) {
 
     var slackcontroller = config.slack.controller;
 
