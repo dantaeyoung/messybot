@@ -14,9 +14,8 @@ module.exports = function(config) {
     // Setup a static directory 'public', totally optional
     webserver.use(express.static('app/public'));
 
-    // You can pass in whatever hostname you want as the second argument
-    // of the express listen function, it defaults to 0.0.0.0 aka localhost 
-    webserver.listen(config.webserver.port,  null, function() {
+    webserver.on('error', console.log);
+    webserver.listen(config.webserver.port, function() {
         console.log('Express webserver configured and listening!')
     });
 
