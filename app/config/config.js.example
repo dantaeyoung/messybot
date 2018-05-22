@@ -29,6 +29,7 @@ config.ambientweather.mac = "00:00:00:00:00:00";
 
 config.coolmasternet = {};
 config.coolmasternet.ip = "192.168.1.xxx";
+config.coolmasternet.port = 10102;
 
 module.exports = config;
 
