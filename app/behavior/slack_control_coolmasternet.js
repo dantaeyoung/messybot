@@ -15,9 +15,9 @@ module.exports = function(config, abilities) {
         for(var did in d['devices']) {
           var thisd = d['devices'][did];
           if(thisd.status == "ON") {
-            mesg += `*Unit ${thisd.id} is ${thisd.status}; ${thisd.mode} ${thisd.fan}*; current temp ${thisd.temp}, setpoint ${thisd.setpoint}\n`
+            mesg += `*Unit ${thisd.id} is ${thisd.status}; ${thisd.mode} ${thisd.fan}; current temp ${thisd.temp}, setpoint ${thisd.setpoint}*\n`
           } else {
-            mesg += `Unit ${thisd.id}: ${thisd.status}; current temp ${thisd.temp}, setpoint ${thisd.setpoint}\n`; 
+            mesg += `Unit ${thisd.id}: ${thisd.status}; current temp ${thisd.temp}\n`; 
           }
         }
 
