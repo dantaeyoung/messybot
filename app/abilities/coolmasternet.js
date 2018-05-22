@@ -7,7 +7,9 @@ class coolmasternet {
         host: config.coolmasternet.ip,
         port: config.coolmasternet.port,
         shellPrompt: '>',
-        timeout: 1500
+        timeout: 1500,
+        execTimeout: 500,
+        sendTimeout: 500
     }
 		this.config = config.coolmasternet;
     this.connection = new Telnet()
@@ -18,25 +20,44 @@ class coolmasternet {
     })
      
     this.connection.on('close', function() {
-        console.log('connection closed')
+//        console.log('connection closed')
     })
 
   }
 
-  send_message(cmd) {
+  send_message(cmd, cb) {
     var self = this;
-
-    var cmd = "off 202"
 
     self.connection.on('ready', function(prompt) {
       self.connection.exec(cmd, function(err, response) {
-        console.log(response)
+        cb(response)
         self.connection.end()
       })
     })
     
     self.connection.connect(self.params)
 
+  }
+
+  stat(cb) {
+  
+    this.send_message("stat", (resp) => {
+      var devices = {};
+      for(var l of resp.trim().split("\n")) {
+        if(l.trim() !== "OK") {
+          var d = l.trim().split(" ")
+          devices[d[0]] = {
+            "id": d[0],
+            "status": d[1],
+            "setpoint": d[2],
+            "temp": d[3],
+            "fan": d[4],
+            "mode": d[5]
+          }
+        }
+      }
+      cb(devices);
+    });
   }
 
 }

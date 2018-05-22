@@ -7,6 +7,8 @@ console.log("= connect to coolmasternet");
 abilities.coolmasternet = new (require('../abilities/coolmasternet'))(config);
 
 
-abilities.coolmasternet.send_message();
+abilities.coolmasternet.stat((resp) => {
+  console.log(resp);
+});
 
 
