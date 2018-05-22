@@ -12,6 +12,11 @@ class coolmasternet {
         sendTimeout: 500
     }
 		this.config = config.coolmasternet;
+  }
+
+  send_message(cmd, cb) {
+    var self = this;
+
     this.connection = new Telnet()
      
     this.connection.on('timeout', function() {
@@ -22,11 +27,6 @@ class coolmasternet {
     this.connection.on('close', function() {
 //        console.log('connection closed')
     })
-
-  }
-
-  send_message(cmd, cb) {
-    var self = this;
 
     self.connection.on('ready', function(prompt) {
       self.connection.exec(cmd, function(err, response) {
@@ -42,11 +42,12 @@ class coolmasternet {
   stat(cb) {
   
     this.send_message("stat", (resp) => {
-      var devices = {};
+      var stat = {};
+      stat['devices'] = {};
       for(var l of resp.trim().split("\n")) {
         if(l.trim() !== "OK") {
-          var d = l.trim().split(" ")
-          devices[d[0]] = {
+          var d = l.trim().split(/\s+/)
+          stat['devices'][d[0]] = {
             "id": d[0],
             "status": d[1],
             "setpoint": d[2],
@@ -56,7 +57,8 @@ class coolmasternet {
           }
         }
       }
-      cb(devices);
+      stat['raw'] = resp.trim();
+      cb(stat);
     });
   }
 
