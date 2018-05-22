@@ -27,12 +27,13 @@ module.exports = function(config, abilities) {
 
     } else {
 
-      console.log(message.match[1]);
-      abilities.coolmasternet.send_message(message.match[1], (d) => {
-        bot.reply(message, d);
-      });
-
+      if(["on", "off", "temp", "allon", "alloff", "cool", "heat", "fan", "dry", "auto", "fspeed"].includes(message.match[1].split(" ")[0])) {
+        abilities.coolmasternet.send_message(message.match[1], (d) => {
+          bot.reply(message, "OK! Sending command `" + message.match[1] + "`" to the HVAC system.);
+        });
+      }
     }
+
  })
 
 }
