@@ -8,6 +8,7 @@ class coolmasternet {
         port: config.coolmasternet.port,
         shellPrompt: '>',
         timeout: 1500,
+        echoLines: 0,
         execTimeout: 500,
         sendTimeout: 500
     }
@@ -30,6 +31,7 @@ class coolmasternet {
 
     self.connection.on('ready', function(prompt) {
       self.connection.exec(cmd, function(err, response) {
+        console.log(response);
         cb(response)
         self.connection.end()
       })
@@ -44,6 +46,7 @@ class coolmasternet {
     this.send_message("stat", (resp) => {
       var stat = {};
       stat['devices'] = {};
+      console.log(resp);
       for(var l of resp.trim().split("\n")) {
         if(l.trim() !== "OK") {
           var d = l.trim().split(/\s+/)
