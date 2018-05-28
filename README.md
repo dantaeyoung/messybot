@@ -10,10 +10,13 @@ Messybot is the opinionated interface for a building.
 ### Abilities supported
 
 - Slack
-- Isy994 Z-wave controller and devices
+- An Express HTML server
+- An HDMI monitor
 - An Art-Net DMX controller
-- An HDMI monitor attached
-- Coolmasternet
+- [OpenZWave](http://www.openzwave.com/)
+- [Isy994 Z-wave controller](https://www.universal-devices.com/residential/isy994izw-series/) and Z-wave devices
+- [CoolMasterNet](https://coolautomation.com/products/coolmasternet/) commercial HVAC controller
+- [Nest Cam](https://nest.com/cameras/) (formerly Dropcam)
 
 ### Installation:
 
