@@ -3,10 +3,9 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 
-module.exports = function(config, abilities) {
+module.exports = function(config) {
 
     var slackcontroller = config.slack.controller;
-    var isy = abilities.isy;
 
     var webserver = express();
     // Parse request bodies
@@ -15,9 +14,8 @@ module.exports = function(config, abilities) {
     // Setup a static directory 'public', totally optional
     webserver.use(express.static('app/public'));
 
-    // You can pass in whatever hostname you want as the second argument
-    // of the express listen function, it defaults to 0.0.0.0 aka localhost 
-    webserver.listen(config.webserver.port,  null, function() {
+    webserver.on('error', console.log);
+    webserver.listen(config.webserver.port, function() {
         console.log('Express webserver configured and listening!')
     });
 
