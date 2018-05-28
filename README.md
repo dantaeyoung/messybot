@@ -48,7 +48,13 @@ Where in doubt, don't add layers of abstraction. No ORMs, interfaces, etc.
 - Since behaviors are pretty messily connected to abilities (i.e. there's no clear separation of behaviors and abilities), it's best to make as many small behaviors as possible that have specific uses, and to let each use 'turn on' those behaviors as needed.
 - Example behaviors: 
   - `ask_about_the_weather.js`: When someone sends a `@messybot weather` message in Slack, get data from a rooftop weather station and post in Slack
-  
+  - `banter.js`: Some slight banter.
+  - `monitor_control.js`: Turn HDMI monitor on/off from Slack
+  - `qrswitches.js`: Use QR codes to execute behaviors
+  - `slack_control_coolmasternet.js`: Control HVAC system with CoolMasterNet
+  - `webroutes.js`: Example webserver
+  - `zwave.js`: Control Zwave system through Isy994
+
 
 
 
