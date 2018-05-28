@@ -17,14 +17,15 @@ Messybot is the opinionated interface for a building.
 - [Isy994 Z-wave controller](https://www.universal-devices.com/residential/isy994izw-series/) and Z-wave devices
 - [CoolMasterNet](https://coolautomation.com/products/coolmasternet/) commercial HVAC controller
 - [Nest Cam](https://nest.com/cameras/) (formerly Dropcam)
+- [Ambient Weather](https://www.ambientweather.com/) station
 
 ### Installation:
 
 - Copy `config.js.example` to `config.js`, and edit the config to match.
 - Copy `messybot.js.example` to `messybot.js`, and uncomment/comment lines as needed.
-- `npm install`
+- Install dependencies with `npm install`
 - Test with `npm start`
-- Install with `pm2 start app/messybot.js`
+- Install as a system service with `pm2 start app/messybot.js`
 - Make sure that pm2 is running as a [service](http://pm2.keymetrics.io/docs/usage/startup/#generating-a-startup-script) on boot.
 - Save scripts for startup: `pm2 save`
 
@@ -45,6 +46,9 @@ Where in doubt, don't add layers of abstraction. No ORMs, interfaces, etc.
 
 - Behaviors wrangle together a mix of abilities into a behavior. For example: E.g, if you send a Slack message, a z-wave light turns on and the hdmi monitor turns on, etc.
 - Since behaviors are pretty messily connected to abilities (i.e. there's no clear separation of behaviors and abilities), it's best to make as many small behaviors as possible that have specific uses, and to let each use 'turn on' those behaviors as needed.
+- Example behaviors: 
+  - `ask_about_the_weather.js`: When someone sends a `@messybot weather` message in Slack, get data from a rooftop weather station and post in Slack
+  
 
 
 
