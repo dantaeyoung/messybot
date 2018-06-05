@@ -33,7 +33,7 @@ class coolmasternet {
       self.connection.exec(cmd, function(err, response) {
         console.log(response);
         cb(response)
-        self.connection.end()
+//        self.connection.end()
       })
     })
     

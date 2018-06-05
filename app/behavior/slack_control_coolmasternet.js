@@ -1,3 +1,19 @@
+function callback_chain_hvac_commands(bot, message, abilities, comms) {
+
+  if(comms.length == 0) { return; } //recursion done
+
+  var firstcomm = comms[0];
+  var restcomms = comms.slice(1); //shallow copy
+
+  console.log("sending command: " + firstcomm);
+
+  abilities.coolmasternet.send_message(firstcomm, (d) => {
+    bot.reply(message, "OK! Sending command `" + firstcomm + "` to the HVAC system.");
+    callback_chain_hvac_commands(bot, message, abilities, restcomms); //recursion!
+  });
+
+}
+
 
 module.exports = function(config, abilities) { 
 
@@ -31,9 +47,14 @@ module.exports = function(config, abilities) {
 
       if(["on", "off", "temp", "allon", "alloff", "cool", "heat", "fan", "dry", "auto", "fspeed"].includes(hvacmessage.split(" ")[0])) {
 
-        abilities.coolmasternet.send_message(hvacmessage, (d) => {
-          bot.reply(message, "OK! Sending command `" + hvacmessage + "` to the HVAC system.");
+        var hvac_prefix = hvacmessage.split(/\d+/)[0].trim();
+
+        var hvac_commands = hvacmessage.split(",").map(function(d) {
+           return hvac_prefix + " " + d.replace(/[^\d]+/g, "");
         });
+
+        callback_chain_hvac_commands(bot, message, abilities, hvac_commands); 
+
       }
     }
 
