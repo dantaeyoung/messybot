@@ -36,8 +36,13 @@ function callback_chain_hvac_commands(bot, message, abilities, comms) {
   console.log("sending command: " + firstcomm);
 
   abilities.coolmasternet.send_message(firstcomm, (d) => {
-    var firstunitid = firstcomm.replace(/[^\d]+/g, "");
-    var firstunitname = hvac_id_to_names(firstunitid);
+
+    if(firstcomm.includes("all")) {
+      var firstunitname = "All Units";
+    } else {
+      var firstunitid = firstcomm.replace(/[^\d]+/g, "");
+      var firstunitname = hvac_id_to_names(firstunitid);
+    }
 
     bot.reply(message, "OK! Sending command `" + firstcomm + "` to the HVAC system. (to " + firstunitname + ")");
 
@@ -84,7 +89,7 @@ module.exports = function(config, abilities) {
         var hvac_prefix = hvacmessage.split(/\d+/)[0].trim();
 
         var hvac_commands = hvacmessage.split(",").map(function(d) {
-           return hvac_prefix + " " + d.replace(/[^\d]+/g, "");
+           return hvac_prefix + " " + d.replace(/[^\d]+/g, "").trim();
         });
 
         callback_chain_hvac_commands(bot, message, abilities, hvac_commands); 
