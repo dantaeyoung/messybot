@@ -21,10 +21,10 @@ function hvac_id_to_names(id) {
     res = "Unnamed"
   }
 
-  return res.padStart(21, " ");  // "foofoofabc"
-
-
+  return res; //return res.padStart(21, "_");  // "foofoofabc"
 }
+
+
 
 function callback_chain_hvac_commands(bot, message, abilities, comms) {
 
@@ -36,11 +36,17 @@ function callback_chain_hvac_commands(bot, message, abilities, comms) {
   console.log("sending command: " + firstcomm);
 
   abilities.coolmasternet.send_message(firstcomm, (d) => {
-    bot.reply(message, "OK! Sending command `" + firstcomm + "` to the HVAC system.");
+    var firstunitid = firstcomm.replace(/[^\d]+/g, "");
+    var firstunitname = hvac_id_to_names(firstunitid);
+
+    bot.reply(message, "OK! Sending command `" + firstcomm + "` to the HVAC system. (to " + firstunitname + ")");
+
     callback_chain_hvac_commands(bot, message, abilities, restcomms); //recursion!
   });
 
 }
+
+
 
 
 module.exports = function(config, abilities) { 
@@ -61,9 +67,9 @@ module.exports = function(config, abilities) {
         for(var did in d['devices']) {
           var thisd = d['devices'][did];
           if(thisd.status == "ON") {
-            mesg += `*Unit ${thisd.id} (${hvac_id_to_names(thisd.id)}) is ${thisd.status}; ${thisd.mode} ${thisd.fan}; current temp ${thisd.temp}, setpoint ${thisd.setpoint}*\n`
+            mesg += `*Unit ${thisd.id} is ${thisd.status}; ${thisd.mode} ${thisd.fan}; temp ${thisd.temp}, setpoint ${thisd.setpoint} (${hvac_id_to_names(thisd.id)})*\n`
           } else {
-            mesg += `Unit ${thisd.id} (${hvac_id_to_names(thisd.id)}) : ${thisd.status}; current temp ${thisd.temp}\n`; 
+            mesg += `Unit ${thisd.id}: ${thisd.status}; temp ${thisd.temp} (${hvac_id_to_names(thisd.id)}) \n`; 
           }
         }
 
