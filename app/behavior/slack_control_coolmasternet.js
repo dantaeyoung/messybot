@@ -1,3 +1,31 @@
+function hvac_id_to_names(id) {
+  var lookup = {
+    101: "Lobby",
+    102: "Event Space East",
+    103: "Event Space West",
+    104: "Cafe",
+    201: "Collaboratory North",
+    202: "Collaboratory Middle",
+    203: "Collaboratory South",
+    204: "West Conference Room",
+    205: "East Conference Room",
+    206: "Meditation Room"
+  } // put this into config some other time
+
+
+  var res; 
+
+  if(id in lookup) {
+    res = lookup[id]
+  } else {
+    res = "Unnamed"
+  }
+
+  return res.padStart(21, " ");  // "foofoofabc"
+
+
+}
+
 function callback_chain_hvac_commands(bot, message, abilities, comms) {
 
   if(comms.length == 0) { return; } //recursion done
@@ -33,9 +61,9 @@ module.exports = function(config, abilities) {
         for(var did in d['devices']) {
           var thisd = d['devices'][did];
           if(thisd.status == "ON") {
-            mesg += `*Unit ${thisd.id} is ${thisd.status}; ${thisd.mode} ${thisd.fan}; current temp ${thisd.temp}, setpoint ${thisd.setpoint}*\n`
+            mesg += `*Unit ${thisd.id} (${hvac_id_to_names(thisd.id)}) is ${thisd.status}; ${thisd.mode} ${thisd.fan}; current temp ${thisd.temp}, setpoint ${thisd.setpoint}*\n`
           } else {
-            mesg += `Unit ${thisd.id}: ${thisd.status}; current temp ${thisd.temp}\n`; 
+            mesg += `Unit ${thisd.id} (${hvac_id_to_names(thisd.id)}) : ${thisd.status}; current temp ${thisd.temp}\n`; 
           }
         }
 
