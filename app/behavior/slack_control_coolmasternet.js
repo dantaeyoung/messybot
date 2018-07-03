@@ -60,7 +60,7 @@ module.exports = function(config, abilities) {
 
   controller.hears('hvac (.*)',['direct_message', 'direct_mention', 'mention'], function(bot, message) {
 
-    var hvacmessage = message.match[1].replace(/^[.\s]+|[.\s]+$/g, ""); // trim whitespace
+    var hvacmessage = message.match[1].replace(/\./g, ''); //remove periods
 
     console.log("I heard" + hvacmessage);
    
