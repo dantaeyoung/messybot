@@ -91,18 +91,28 @@ module.exports = function(config, abilities) {
       var listofcommands = ["on", "off", "temp", "allon", "alloff", "cool", "heat", "fan", "dry", "auto", "fspeed"]
       if(listofcommands.includes(hvacmessage.split(" ")[0])) {
 
-        var hvac_command = hvacmessage.split(/\d+/)[0].trim();
+        console.log("hvacmessage: " + hvacmessage);
 
-        var hvac_ids = hvacmessage.match(/[a-z]+ ([\d,]+)/)[1].split(",")
+        if(["allon", "alloff"].includes(hvacmessage.split(" ")[0])) {
 
-        var hvac_suffix = (hvacmessage.match(/[a-z]+ [\d,]+ (\d+)/) || ["",""])[1] // get suffix if it exists; otherwise ""
+          console.log("sending command: " + hvacmessage);
+          callback_chain_hvac_commands(bot, message, abilities, [hvacmessage]);
 
-        var hvac_commands = hvac_ids.map(function(thisid) {
-           console.log("sending command: " + hvac_command + " " + thisid + " " + hvac_suffix);
-           return hvac_command + " " + thisid + " " + hvac_suffix;
-        });
+        } else { 
 
-        callback_chain_hvac_commands(bot, message, abilities, hvac_commands); 
+          var hvac_command = hvacmessage.split(/\d+/)[0].trim();
+
+          var hvac_ids = hvacmessage.match(/[a-z]+ ([\d,]+)/)[1].split(",")
+
+          var hvac_suffix = (hvacmessage.match(/[a-z]+ [\d,]+ (\d+)/) || ["",""])[1] // get suffix if it exists; otherwise ""
+
+          var hvac_commands = hvac_ids.map(function(thisid) {
+             console.log("sending command: " + hvac_command + " " + thisid + " " + hvac_suffix);
+             return hvac_command + " " + thisid + " " + hvac_suffix;
+          });
+
+          callback_chain_hvac_commands(bot, message, abilities, hvac_commands); 
+        }
 
       }
     }
