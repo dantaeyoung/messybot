@@ -96,6 +96,7 @@ module.exports = function(config, abilities) {
         var hvac_suffix = (hvacmessage.match(/[a-z]+ [\d,]+ (\d+)/) || ["",""])[1] // get suffix if it exists; otherwise ""
 
         var hvac_commands = hvac_ids.map(function(thisid) {
+           console.log("sending command: " + hvac_command + " " + thisid + " " + hvac_suffix);
            return hvac_command + " " + thisid + " " + hvac_suffix;
         });
 
