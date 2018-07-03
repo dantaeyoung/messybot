@@ -49,7 +49,7 @@ module.exports = function(config, abilities) {
 
   controller.hears('hvac (.*)',['direct_message', 'direct_mention', 'mention'], function(bot, message) {
 
-    var hvacmessage = message.match[1].replace(/^[.\s]+|[.\s]+$/g, "");
+    var hvacmessage = message.toLowerCase().match[1].replace(/^[.\s]+|[.\s]+$/g, ""); // trim whitespace
 
     console.log("I heard" + hvacmessage);
    
@@ -73,12 +73,17 @@ module.exports = function(config, abilities) {
 
     } else {
 
-      if(["on", "off", "temp", "allon", "alloff", "cool", "heat", "fan", "dry", "auto", "fspeed"].includes(hvacmessage.split(" ")[0])) {
+      var listofcommands = ["on", "off", "temp", "allon", "alloff", "cool", "heat", "fan", "dry", "auto", "fspeed"]
+      if(listofcommands.includes(hvacmessage.split(" ")[0])) {
 
-        var hvac_prefix = hvacmessage.split(/\d+/)[0].trim();
+        var hvac_command = hvacmessage.split(/\d+/)[0].trim();
 
-        var hvac_commands = hvacmessage.split(",").map(function(d) {
-           return hvac_prefix + " " + d.replace(/[^\d]+/g, "");
+        var hvac_ids = hvacmessage.match(/[a-z]+ ([\d,]+)/)[1].split(",")
+
+        var hvac_suffix = (hvacmessage.match(/[a-z]+ [\d,]+ (\d+)/) || ["",""])[1] // get suffix if it exists; otherwise ""
+
+        var hvac_commands = hvac_ids.map(function(thisid) {
+           return hvac_command + " " + thisid + " " + hvac_suffix;
         });
 
         callback_chain_hvac_commands(bot, message, abilities, hvac_commands); 
