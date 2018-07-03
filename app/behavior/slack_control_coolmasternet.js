@@ -60,7 +60,7 @@ module.exports = function(config, abilities) {
 
   controller.hears('hvac (.*)',['direct_message', 'direct_mention', 'mention'], function(bot, message) {
 
-    var hvacmessage = message.toLowerCase().match[1].replace(/^[.\s]+|[.\s]+$/g, ""); // trim whitespace
+    var hvacmessage = message.match[1].replace(/^[.\s]+|[.\s]+$/g, ""); // trim whitespace
 
     console.log("I heard" + hvacmessage);
    
@@ -83,6 +83,8 @@ module.exports = function(config, abilities) {
       });
 
     } else {
+
+      hvacmessage = hvacmessage.toLowerCase();
 
       var listofcommands = ["on", "off", "temp", "allon", "alloff", "cool", "heat", "fan", "dry", "auto", "fspeed"]
       if(listofcommands.includes(hvacmessage.split(" ")[0])) {
