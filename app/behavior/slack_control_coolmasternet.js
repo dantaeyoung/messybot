@@ -1,4 +1,5 @@
 function hvac_id_to_names(id) {
+  id = parseInt(id)
   var lookup = {
     101: "Lobby",
     102: "Event Space East",
@@ -11,6 +12,7 @@ function hvac_id_to_names(id) {
     205: "East Conference Room",
     206: "Meditation Room"
   } // put this into config some other time
+
 
 
   var res; 
@@ -40,7 +42,7 @@ function callback_chain_hvac_commands(bot, message, abilities, comms) {
     if(firstcomm.includes("all")) {
       var firstunitname = "All Units";
     } else {
-      var firstunitid = firstcomm.replace(/[^\d]+/g, "");
+      var firstunitid = firstcomm.match(/([\d]+) ?/)[1].split(",")
       var firstunitname = hvac_id_to_names(firstunitid);
     }
 
