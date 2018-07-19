@@ -35,7 +35,8 @@ module.exports = function(config, abilities) {
 	});
   controller.hears('playnext',['direct_message', 'direct_mention', 'mention'], function(bot, message) {
       bot.reply(message, "Trying to play next song! >>");
-		  abilities.youtubeplayer.playNext(function() {
+		  abilities.youtubeplayer.playNext(function(d) {
+          bot.reply(message, "Playing :: *" + d.info.title + "*");
       });
 	});
 

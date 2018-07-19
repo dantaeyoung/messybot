@@ -35,7 +35,8 @@ class youtubeplayer {
           m4aurl = format.url;
         }
       }
-      cb({ "m4aurl": m4aurl, "info": ytinfo });
+//      cb({ "audiourl": m4aurl, "info": ytinfo });
+      cb({ "audiourl": ytinfo.url, "info": ytinfo }); // lots of videos dont seem to have m4a
 
     });
   }
@@ -44,9 +45,9 @@ class youtubeplayer {
   playAudio(yturl, cb) {
     var self = this;
     self._getAudioURL(yturl, function(d) {
-      self.omxplayer.newSource(d.m4aurl, "both", "false", self.volume);
+      self.omxplayer.newSource(d.audiourl, "both", "false", self.volume);
       self.omxplayer.on('close', function() {
-        self.playNext();
+        self.playNext(cb);
       });
       cb(d);
     });
