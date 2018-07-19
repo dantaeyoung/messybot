@@ -24,6 +24,9 @@ abilities.arpscan = new (require('../abilities/arpscan'))(config);
 console.log("= connect to NESTCAM");
 abilities.nestcam = new (require('../abilities/nestcam'))(config);
 
+console.log("= start youtubeplayer");
+abilities.youtubeplayer = new (require('./abilities/youtubeplayer.js'))(config);
+
 
 console.log("=== ADDING BEHAVIORS");
 

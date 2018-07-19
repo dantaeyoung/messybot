@@ -1,23 +1,66 @@
 var youtubedl = require('youtube-dl');
+var Omx = require('node-omxplayer');
 
 class youtubeplayer {
 
   constructor(config) {
     this.config = config;
+    this.omxplayer = Omx("", "both", "false", -1000);
   }
 
-  getinfo(url) {
-    var url = "http://www.youtube.com/watch?v=WKsjaOqDXgg";
-    youtubedl.getInfo(url, function(err, info) {
+
+  _getInfo(yturl, cb) {
+    youtubedl.getInfo(yturl, function(err, info) {
       if (err) throw err;
-      console.log('id:', info.id);
+      /*console.log('id:', info.id);
       console.log('title:', info.title);
-      console.log('url:', info.url);
       console.log('thumbnail:', info.thumbnail);
       console.log('description:', info.description);
       console.log('filename:', info._filename);
       console.log('format id:', info.format_id);
+      console.log('url:', info.url);*/
+      cb(info);
     });
+  }
+
+  _getAudioURL(yturl, cb) {
+    var self = this;
+    self._getInfo(yturl, function(ytinfo) {
+
+      var m4aurl;
+      for(let format of ytinfo.formats) {
+        if(format.ext == 'm4a') {
+          m4aurl = format.url;
+        }
+      }
+      cb({ "m4aurl": m4aurl, "info": ytinfo });
+
+    });
+  }
+
+
+  playAudio(yturl, cb) {
+    var self = this;
+    self._getAudioURL(yturl, function(d) {
+      self.omxplayer.newSource(d.m4aurl);
+      cb(d);
+    });
+  }
+    
+  play() {
+    this.omxplayer.play()
+  }    
+
+  pause() {
+    this.omxplayer.pause()
+  }    
+
+  volUp() {
+    this.omxplayer.volUp()
+  }      
+
+  volDown() {
+    this.omxplayer.volDown()
   }
 
 
