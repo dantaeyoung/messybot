@@ -18,6 +18,7 @@ Messybot is the opinionated interface for a Space.
 - [CoolMasterNet](https://coolautomation.com/products/coolmasternet/) commercial HVAC controller
 - [Nest Cam](https://nest.com/cameras/) (formerly Dropcam)
 - [Ambient Weather](https://www.ambientweather.com/) station
+- Youtube playback via `youtube-dl` and `omx-player`.
 
 ### Installation:
 
