@@ -1,6 +1,6 @@
 # Messybot
 
-Messybot is the opinionated interface for a building. 
+Messybot is the opinionated interface for a Space. 
 
 ### Requirements:
 
@@ -18,11 +18,15 @@ Messybot is the opinionated interface for a building.
 - [CoolMasterNet](https://coolautomation.com/products/coolmasternet/) commercial HVAC controller
 - [Nest Cam](https://nest.com/cameras/) (formerly Dropcam)
 - [Ambient Weather](https://www.ambientweather.com/) station
+- Youtube playback via `youtube-dl` and `omx-player`.
 
-### Installation:
+### Configuration:
 
 - Copy `config.js.example` to `config.js`, and edit the config to match.
-- Copy `messybot.js.example` to `messybot.js`, and uncomment/comment lines as needed.
+- Copy `messybot.js.example` to `messybot.js`, and uncomment/comment abilities and behaviors as needed. 
+
+### Installation 
+
 - Install dependencies with `npm install`
 - Test with `npm start`
 - Install as a system service with `pm2 start app/messybot.js`
@@ -58,6 +62,6 @@ Where in doubt, don't add layers of abstraction. No ORMs, interfaces, etc.
 
 ### Security
 
-Currently Messybot exposes a lot of services and has no access control. Use at your own risk! It's a messy system, after all.
+Currently Messybot exposes a lot of services and has no access control. Use at your own risk! It's a _Messy_ system, after all.
 
 
