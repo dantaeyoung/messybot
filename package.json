@@ -20,6 +20,7 @@
   "dependencies": {
     "arpscan": "^0.6.0",
     "axios": "^0.18.0",
+    "beepbeep": "^1.2.2",
     "botkit": "^0.6.7",
     "dmx": "0.0.5",
     "isy-js": "^0.4.5",
