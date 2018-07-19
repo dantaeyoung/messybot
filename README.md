@@ -58,6 +58,6 @@ Where in doubt, don't add layers of abstraction. No ORMs, interfaces, etc.
 
 ### Security
 
-Currently Messybot exposes a lot of services and has no access control. Use at your own risk! It's a messy system, after all.
+Currently Messybot exposes a lot of services and has no access control. Use at your own risk! It's a _Messy_ system, after all.
 
 
