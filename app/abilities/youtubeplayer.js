@@ -5,7 +5,8 @@ class youtubeplayer {
 
   constructor(config) {
     this.config = config;
-    this.omxplayer = Omx("", "both", "false", -1000);
+    this.volume = -3000;
+    this.omxplayer = Omx("", "both", "false", this.volume);
   }
 
 
@@ -42,7 +43,7 @@ class youtubeplayer {
   playAudio(yturl, cb) {
     var self = this;
     self._getAudioURL(yturl, function(d) {
-      self.omxplayer.newSource(d.m4aurl);
+      self.omxplayer.newSource(d.m4aurl, "both", "false", self.volume);
       cb(d);
     });
   }
@@ -57,10 +58,13 @@ class youtubeplayer {
 
   volUp() {
     this.omxplayer.volUp()
+    this.volume = Math.min(0, this.volume + 300);
+
   }      
 
   volDown() {
     this.omxplayer.volDown()
+    this.volume = Math.max(-6000, this.volume - 300);
   }
 
 
