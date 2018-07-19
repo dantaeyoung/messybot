@@ -1,6 +1,6 @@
 # Messybot
 
-Messybot is the opinionated interface for a building. 
+Messybot is the opinionated interface for a Space. 
 
 ### Requirements:
 
