@@ -46,9 +46,9 @@ class youtubeplayer {
     var self = this;
     self._getAudioURL(yturl, function(d) {
       self.omxplayer.newSource(d.audiourl, "both", "false", self.volume);
-      self.omxplayer.on('close', function() {
-        self.playNext(cb);
-      });
+//      self.omxplayer.on('close', function() {
+//        self.playNext(cb);
+//      });
       cb(d);
     });
   }
