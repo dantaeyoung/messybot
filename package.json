@@ -22,6 +22,7 @@
     "axios": "^0.18.0",
     "beepbeep": "^1.2.2",
     "botkit": "^0.6.7",
+    "color-convert": "^1.9.3",
     "dmx": "^0.1.1",
     "isy-js": "^0.4.5",
     "jquery": "^3.2.1",
